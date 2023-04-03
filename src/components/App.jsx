@@ -1,16 +1,45 @@
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import ImageGallery from './ImageGallery';
+import ImageGalleryItem from './ImageGalleryItem';
+
+const API_KEY = '32273532-93ec3ca64628767a4a46a9f0b';
+axios.defaults.baseURL = 'https://pixabay.com/api/';
+
 export const App = () => {
+  const [query, setQuery] = useState('');
+  const [page, setPage] = useState(1);
+  const [images, setImages] = useState([]);
+  const [isLoading, setIsLoadiong] = useState(false);
+
+  const handleSearchSubmit = searchQuery => {
+    setQuery(searchQuery);
+    setPage(1);
+    setImages([]);
+  };
+  useEffect(() => {
+    const fetchImages = async () => {
+      setIsLoadiong(true);
+
+      try {
+        const response = await axios.get(
+          `?q=cat&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
+        );
+        setImages(prevImages => [...prevImages, ...response.data.hits]);
+      } catch (error) {
+        console.error(error);
+      }
+      setIsLoadiong(false);
+    };
+
+    if (query !== '') {
+      fetchImages();
+    }
+  }, [query, page]);
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div className="App">
+      <ImageGallery images={images} />
     </div>
   );
 };
