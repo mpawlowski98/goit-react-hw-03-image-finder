@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import ImageGallery from './ImageGallery';
-import ImageGalleryItem from './ImageGalleryItem';
+import ImageGallery from './ImageGallery/ImageGallery';
+import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
+import Loader from './Loader/Loader';
+import Button from './Button/Button';
 
 const API_KEY = '32273532-93ec3ca64628767a4a46a9f0b';
 axios.defaults.baseURL = 'https://pixabay.com/api/';
@@ -35,7 +37,6 @@ export const App = () => {
       }
       setIsLoading(false);
     };
-    fetchImages();
     if (query !== '') {
       fetchImages();
     }
@@ -43,6 +44,8 @@ export const App = () => {
   return (
     <div className="App">
       <ImageGallery images={images} />
+      {isLoading && <Loader />}
+      {!isLoading && images.length > 0 && <Button onClick={handleLoadClick} />}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './styles.css';
+import css from './ImageGalleryItem.module.css';
 const ImageGalleryItem = ({ webformatURL, largeImageURL }) => {
   return (
     <>
@@ -8,7 +8,7 @@ const ImageGalleryItem = ({ webformatURL, largeImageURL }) => {
           <img
             src={webformatURL}
             alt={webformatURL}
-            className={css.ImageGalleryItem}
+            className={css.ImageGalleryItemImage}
           />
         </div>
       </li>
