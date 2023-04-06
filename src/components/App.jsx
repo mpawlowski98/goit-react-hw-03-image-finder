@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ImageGallery from './ImageGallery/ImageGallery';
-import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 import Loader from './Loader/Loader';
 import Button from './Button/Button';
+import Searchbar from './SearchBar/Searchbar';
 
 const API_KEY = '32273532-93ec3ca64628767a4a46a9f0b';
 axios.defaults.baseURL = 'https://pixabay.com/api/';
@@ -37,12 +37,14 @@ export const App = () => {
       }
       setIsLoading(false);
     };
+    fetchImages();
     if (query !== '') {
       fetchImages();
     }
   }, [query, page]);
   return (
     <div className="App">
+      <Searchbar onSubmit={handleSearchSubmit} />
       <ImageGallery images={images} />
       {isLoading && <Loader />}
       {!isLoading && images.length > 0 && <Button onClick={handleLoadClick} />}
