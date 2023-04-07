@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './Button.module.css';
-
+import PropTypes from 'prop-types';
 const Button = ({ onClick }) => {
   return (
     <div className={css.buttonDisplay}>
@@ -11,4 +11,7 @@ const Button = ({ onClick }) => {
   );
 };
 
+Button.propTypes = {
+  Button: PropTypes.func,
+};
 export default Button;

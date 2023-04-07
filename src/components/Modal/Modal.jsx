@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRef, useEffect } from 'react';
 import css from './Modal.module.css';
+import PropTypes from 'prop-types';
 
 const Modal = ({ isOpen, onClose, imageUrl }) => {
   const modalRef = useRef(null);
@@ -33,6 +34,12 @@ const Modal = ({ isOpen, onClose, imageUrl }) => {
       </div>
     </div>
   ) : null;
+};
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+  imageUrl: PropTypes.string,
 };
 
 export default Modal;

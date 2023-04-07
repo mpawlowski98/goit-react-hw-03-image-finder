@@ -2,6 +2,7 @@ import React from 'react';
 import css from './ImageGalleryItem.module.css';
 import Modal from '../Modal/Modal';
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 const ImageGalleryItem = ({ webformatURL, largeImageURL }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -48,4 +49,8 @@ const ImageGalleryItem = ({ webformatURL, largeImageURL }) => {
   );
 };
 
+ImageGalleryItem.propTypes = {
+  webformatURL: PropTypes.string,
+  largeImageURL: PropTypes.string,
+};
 export default ImageGalleryItem;

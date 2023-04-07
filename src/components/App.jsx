@@ -14,12 +14,6 @@ export const App = () => {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSearchSubmit = searchQuery => {
-    setQuery(searchQuery);
-    setPage(1);
-    setImages([]);
-  };
-
   const handleLoadClick = () => {
     setPage(prevPage => prevPage + 1);
   };
@@ -37,13 +31,19 @@ export const App = () => {
       }
       setIsLoading(false);
     };
-    fetchImages();
+
     if (query !== '') {
       fetchImages();
     }
   }, [query, page]);
+
+  const handleSearchSubmit = searchQuery => {
+    setQuery(searchQuery);
+    setPage(1);
+    setImages([]);
+  };
   return (
-    <div className="App">
+    <div>
       <Searchbar onSubmit={handleSearchSubmit} />
       <ImageGallery images={images} />
       {isLoading && <Loader />}
