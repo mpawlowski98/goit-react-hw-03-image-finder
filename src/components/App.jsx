@@ -9,9 +9,9 @@ const API_KEY = '32273532-93ec3ca64628767a4a46a9f0b';
 axios.defaults.baseURL = 'https://pixabay.com/api/';
 
 export const App = () => {
+  const [images, setImages] = useState([]);
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
-  const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleLoadClick = () => {

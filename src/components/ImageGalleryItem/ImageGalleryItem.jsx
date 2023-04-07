@@ -16,8 +16,8 @@ const ImageGalleryItem = ({ webformatURL, largeImageURL }) => {
   };
 
   useEffect(() => {
-    const handleKeyDown = event => {
-      if (event.key === 'Escape') {
+    const handleKeyDown = e => {
+      if (e.key === 'Escape') {
         handleCloseModal();
       }
     };
